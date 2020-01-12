@@ -11,7 +11,7 @@ logger = getLogger()
 _file_name = datetime.now().strftime("log_%Y_%m_%d")
 basicConfig(
     filename="./logs/" + _file_name,
-    format="%(asctime)s %(levelname)s %(message)s",
+    format="%(asctime)s %(levelname)s [%(filename)s:%(lineno)d] %(message)s",
     filemode="a"
 )
 logger.setLevel(INFO)
