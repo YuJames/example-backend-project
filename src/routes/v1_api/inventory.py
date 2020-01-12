@@ -16,16 +16,6 @@ inventory_bp = Blueprint("inventory_bp", url_prefix="/kitchen")
 next_unique_id = 1
 inventory = {}
 
-"""Expecting HTTP body.
-
-{
-    group: [],      # optional; rep code (e.g. client_A, e.g. client_B)
-    user: [],       # optional; username of alert creator (e.g. employee@client.com)
-    role: [],       # optional; user role (e.g. admin, regular)
-    type: []        # optional; alert type (e.g. usage, weather)
-}
-"""
-
 
 @inventory_bp.route("/inventory", methods=["GET"])
 async def get_inventory_all(request):
@@ -65,7 +55,7 @@ async def get_inventory(request, item):
 
 @inventory_bp.route("/inventory", methods=["POST"])
 async def set_inventory_all(request):
-    """Set the inventory of all items, if they don't exist.
+    """Set the inventory of all items, if they do not exist.
     """
 
     try:
@@ -123,7 +113,7 @@ async def set_inventory(request, item):
 
 @inventory_bp.route("/inventory", methods=["PUT"])
 async def update_inventory_all(request):
-    """Update the inventory of all items, if they exist.
+    """Update the inventory of multiple items, if they exist.
     """
 
     try:
@@ -133,7 +123,7 @@ async def update_inventory_all(request):
 
         if len(inv_check) > 0:
             raise Exception(
-                f"Error: resources {inv_check} don't exist."
+                f"Error: resources {inv_check} do not exist."
             )
 
         inventory.update(request.json)
@@ -177,89 +167,3 @@ async def update_inventory(request, item):
             {"error": str(e)},
             status=500
         )
-
-# @alerts.route("/<id>")
-# async def get(request, id):
-#     try:
-#         collection = mongo.connect(True, True)
-
-#         result = await collection.find_one({"_id": ObjectId(id)})
-#         if result is not None:
-#             result["_id"] = str(result["_id"])
-
-#         return response.json(result)
-#     except Exception as e:
-#         return response.text(
-#             f"{e}",
-#             status=500
-#         )
-
-
-# @alerts.route("/", methods=["POST"])
-# async def post(request):
-#     try:
-#         body = request.json
-#         body["date"] = f"{datetime.utcnow()}"
-
-#         collection = mongo.connect(True, True)
-
-#         result = (await gather(
-#             collection.insert_one(body)
-#         ))[0].inserted_id
-
-#         return response.text(f"Success; mongo id: {result}")
-#     except Exception as e:
-#         return response.text(
-#             f"{e}",
-#             status=500
-#         )
-
-
-# @alerts.route("/<id>", methods=["PUT"])
-# async def put(request, id):
-#     try:
-#         body = request.json
-#         body["date"] = f"{datetime.utcnow()}"
-
-#         collection = mongo.connect(True, True)
-
-#         result = (await collection.update_one(
-#             {"_id": ObjectId(id)},
-#             {"$set": {i: j for i, j in body.items()}}
-#         )).modified_count
-
-#         if result != 1:
-#             return response.text(
-#                 "Failure",
-#                 status=400
-#             )
-#         else:
-#             return response.text("Success")
-#     except Exception as e:
-#         return response.text(
-#             f"{e}",
-#             status=500
-#         )
-
-
-# @alerts.route("/<id>", methods=["DELETE"])
-# async def delete(request, id):
-#     try:
-#         collection = mongo.connect(True, True)
-
-#         result = (await collection.delete_one(
-#             {"_id": ObjectId(id)}
-#         )).deleted_count
-
-#         if result != 1:
-#             return response.text(
-#                 "Failure",
-#                 status=400
-#             )
-#         else:
-#             return response.text("Success")
-#     except Exception as e:
-#         return response.text(
-#             f"{e}",
-#             status=500
-#         )
