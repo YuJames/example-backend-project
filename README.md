@@ -23,4 +23,4 @@ So what does this come with? Plenty. Everything below contributes to one or more
 -version control
 ### Postface
 Due to the richness of this project, I am more than happy to discuss, expand on, and demonstrate everything I 
-have written with an in-person interview. Enclosed is a word document with additional information. Thank You.
+have written with an in-person interview.
