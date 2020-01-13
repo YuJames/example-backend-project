@@ -1,0 +1,60 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: api-${APP_NAME}
+  namespace: ${NAMESPACE}
+spec:
+  type: LoadBalancer
+  selector:
+    app-group: ${APP_NAME}
+    role: api
+  ports:
+  - protocol: TCP
+    port: ${APP_PORT}
+    targetPort: ${APP_PORT}
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-${APP_NAME}
+  namespace: ${NAMESPACE}
+  labels:
+    app-group: ${APP_NAME}
+    role: api
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app-group: ${APP_NAME}
+      role: api
+  template:
+    metadata:
+      labels:
+        app-group: ${APP_NAME}
+        role: api
+    spec:
+      containers:
+      - name: ${APP_NAME}
+        image: ${DOCKER_IMAGE_NAME}
+        command: ['python', 'src/server.py']
+        resources:
+          requests:
+            cpu: 40m
+        env:
+        - name: ENVIRONMENT
+          valueFrom:
+            configMapKeyRef:
+              name: ${APP_NAME}-configs
+              key: ENVIRONMENT
+        - name: APP_HOST
+          valueFrom:
+            configMapKeyRef:
+              name: ${APP_NAME}-configs
+              key: APP_HOST
+        - name: APP_PORT
+          valueFrom:
+            configMapKeyRef:
+              name: ${APP_NAME}-configs
+              key: APP_PORT
+        ports:
+        - containerPort: ${APP_PORT}
