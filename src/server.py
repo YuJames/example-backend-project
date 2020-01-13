@@ -59,7 +59,7 @@ async def root(request):
                         "payload": None
                     }
                 ],
-                "v1/api/departments/kitchen/inventory/": [
+                "/v1/api/departments/kitchen/inventory/": [
                     {
                         "method": "GET",
                         "description": "get all items",
@@ -76,7 +76,7 @@ async def root(request):
                         "payload": "json of any number of 'current ingredient': 'number' pairings"
                     }
                 ],
-                "v1/api/departments/kitchen/inventory/<item>": [
+                "/v1/api/departments/kitchen/inventory/<item>": [
                     {
                         "method": "GET",
                         "description": "get an item",
