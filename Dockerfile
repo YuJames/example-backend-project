@@ -6,6 +6,6 @@ COPY . /
 
 RUN pip install -r requirements.txt
 
-EXPOSE ${APP_HOST}
+EXPOSE ${APP_PORT}
 
 CMD ["python", "./src/server.py"]
