@@ -41,13 +41,59 @@ app.blueprint(v1)
 # ~~~~  PUBLIC FUNCTIONS  ~~~~ #
 @app.route("/")
 async def root(request):
+    """Informational root endpoint.
+    """
+
     return response.json(
         {
             "title": "Restaurant API",
             "description": (
                 "A REST API service to support "
                 "restaurant operations."
-            )
+            ),
+            "endpoints": {
+                "/": [
+                    {
+                        "method": "GET",
+                        "description": "base information",
+                        "payload": None
+                    }
+                ],
+                "/v1/api/departments/kitchen/inventory/": [
+                    {
+                        "method": "GET",
+                        "description": "get all items",
+                        "payload": None
+                    },
+                    {
+                        "method": "POST",
+                        "description": "set all items",
+                        "payload": "json of any number of 'new ingredient': 'number' pairings"
+                    },
+                    {
+                        "method": "PUT",
+                        "description": "update all items",
+                        "payload": "json of any number of 'current ingredient': 'number' pairings"
+                    }
+                ],
+                "/v1/api/departments/kitchen/inventory/<item>": [
+                    {
+                        "method": "GET",
+                        "description": "get an item",
+                        "payload": None
+                    },
+                    {
+                        "method": "POST",
+                        "description": "set an item",
+                        "payload": "json of a 'new ingredient': 'number' pairing"
+                    },
+                    {
+                        "method": "PUT",
+                        "description": "update an item",
+                        "payload": "json of a 'current ingredient': 'number' pairing"
+                    }
+                ]
+            }
         }
     )
 
