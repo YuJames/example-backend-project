@@ -130,5 +130,6 @@ dmypy.json
 
 .vscode/settings.json
 logs/log*
-
+temp/*
+!temp/.gitkeep
 .private_env.sh
