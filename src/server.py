@@ -46,7 +46,7 @@ async def root(request):
             "title": "Restaurant API",
             "description": (
                 "A REST API service to support "
-                "resturant operations."
+                "restaurant operations."
             )
         }
     )
