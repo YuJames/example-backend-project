@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # project settings
-BUILD_NUMBER=0.0.0
+BUILD_NUMBER=1.0.0
 ENVIRONMENT="$(git rev-parse --symbolic-full-name --abbrev-ref HEAD)"
 if [[ $ENVIRONMENT == "production" ]]; then
     NAMESPACE="production"
