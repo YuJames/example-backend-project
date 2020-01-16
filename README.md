@@ -12,15 +12,15 @@ The main advantages of my development style include (but are not limited to) the
 2) low coupling & high cohesion
 3) low downtime for project inheritance, development setup, and deployment
 ### Features
-So what does this come with? Plenty. Everything below contributes to one or more of the above-mentioned advantages.
--clear folder structure, good package management
--logging, error handling
--enumerations, route management, configurations
--virtual environment, dependency management, environment management
--processes for building, testing, and deploying
--ability to run either locally, in docker, or in kubernetes
--documentation
--version control
+So what does this come with? Plenty. Everything below contributes to one or more of the above-mentioned advantages.   
+-clear folder structure, good package management  
+-logging, error handling  
+-enumerations, route management, configurations   
+-virtual environment, dependency management, environment management   
+-processes for building, testing, and deploying   
+-ability to run either locally, in docker, or in kubernetes   
+-documentation    
+-version control    
 ### Postface
 Due to the richness of this project, I am more than happy to discuss, expand on, and demonstrate everything I 
 have written with an in-person interview.
