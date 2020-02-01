@@ -1,3 +1,4 @@
+![](https://github.com/YuJames/example-backend-project/workflows/Python%20application/badge.svg)
 ## Purpose
 To demonstrate relevant software engineering skills by creating a REST API in my development style.
 
